@@ -9,7 +9,7 @@
             </h1>
         </div>
     </div>
-{% endblock %}
+{% endblock %}-
 {% block content %}
     <section id="stats" class="stats">
         <div class="container container--85">
@@ -66,7 +66,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt
                 libero
                 optio esse quisquam illo omnis.</p>
-            <img src="images/signature.svg" class="about-us--text-signature" alt="Signature"/>
+            <img src="{% static 'images/signature.svg' %}" class="about-us--text-signature" alt="Signature"/>
         </div>
         <div class="about-us--image"><img src="{% static 'images/about-us.jpg' %}" alt="People in circle"/></div>
     </section>
@@ -75,9 +75,9 @@
         <h2>Komu pomagamy?</h2>
 
         <ul class="help--buttons">
-            <li data-id="1"><a href="#" class="btn btn--without-border active">Fundacjom</a></li>
-            <li data-id="2"><a href="#" class="btn btn--without-border">Organizacjom pozarządowym</a></li>
-            <li data-id="3"><a href="#" class="btn btn--without-border">Lokalnym zbiórkom</a></li>
+            <li data-id="1"><a href="#help" class="btn btn--without-border active">Fundacjom</a></li>
+            <li data-id="2"><a href="#help" class="btn btn--without-border">Organizacjom pozarządowym</a></li>
+            <li data-id="3"><a href="#help" class="btn btn--without-border">Lokalnym zbiórkom</a></li>
         </ul>
 
         <!-- SLIDE 1 -->
