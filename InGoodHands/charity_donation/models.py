@@ -16,7 +16,7 @@ INSTITUTION_TYPE = (
 
 
 class Institution(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
     description = models.TextField()
     type = models.TextField(choices=INSTITUTION_TYPE, default="Foundation")
     categories = models.ManyToManyField(Category)
