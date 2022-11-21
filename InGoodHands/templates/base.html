@@ -16,7 +16,10 @@
                 <li class="logged-user">
                     <span class="navbar-text">Witaj: {{ user.username }}</span>
                     <ul class="dropdown">
-                        <li><a href="#">Profil</a></li>
+                        {% if user.is_superuser %}
+                            <li><a href="{% url 'admin:index' %}">Panel Administratora</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'user_details' %}">Profil</a></li>
                         <li><a href="#">Ustawienia</a></li>
                         <li><a href="{% url "logout" %}">Wyloguj</a></li>
                     </ul>

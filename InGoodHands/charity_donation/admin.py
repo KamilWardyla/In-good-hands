@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Institution, Donation, User, Category
+from .models import Institution, Donation, Category
 
 # Register your models here.
 

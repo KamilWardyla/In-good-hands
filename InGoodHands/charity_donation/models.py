@@ -24,8 +24,11 @@ class Institution(models.Model):
     type = models.TextField(choices=INSTITUTION_TYPE, default="Foundation")
     categories = models.ManyToManyField(Category)
 
+    class Meta:
+        ordering = ['type']
+
     def __str__(self):
-        return self.name
+        return f"Nazwa instytucji: {self.name}, Typ: {self.type}, Kategoria: {self.categories}"
 
 
 class Donation(models.Model):

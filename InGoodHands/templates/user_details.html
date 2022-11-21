@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h2>Twoje Dane</h2>
+    <p>Imię: {{ user_details.first_name}}</p>
+    <p>Nazwisko: {{ user_details.last_name }}</p>
+    <p>Email: {{ user_details.email }}</p>
+{% endblock %}

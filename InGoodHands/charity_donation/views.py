@@ -108,3 +108,11 @@ class LoginUserView(View):
 def logout_view(request):
     logout(request)
     return redirect('landing_page')
+
+
+class UserDetailsView(LoginRequiredMixin, View):
+    def get(self, request):
+        user_details = User.objects.get(id=request.user.id)
+        print(user_details)
+        ctx = {"user_details": user_details}
+        return render(request, "user_details.html", ctx)
