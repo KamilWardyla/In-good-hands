@@ -28,7 +28,7 @@ class Institution(models.Model):
         ordering = ['type']
 
     def __str__(self):
-        return f"Nazwa instytucji: {self.name}, Typ: {self.type}, Kategoria: {self.categories}"
+        return f"Nazwa instytucji: {self.name}, Typ: {self.type}, Kategoria: {self.categories.all()}"
 
 
 class Donation(models.Model):

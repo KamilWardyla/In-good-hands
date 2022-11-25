@@ -9,10 +9,6 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class RegisterView(View):
-    def get(self, request):
-        return render(request, 'register.html')
-
 
 class LandingPageView(View):
 
