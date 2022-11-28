@@ -6,20 +6,20 @@ import datetime
 from django.core.exceptions import ValidationError
 
 
-class DonationForm(ModelForm):
-    @staticmethod
-    def date_validator(value):
-        today = datetime.datetime.now().date()
-        if value < today:
-            raise ValidationError(
-                "Nieprawidłowa data, odbiór może nastąpić następnego dnia roboczego"
-            )
-
-    pick_up_date = forms.DateField(validators=[date_validator])
-
-    class Meta:
-        model = Donation
-        fields = "__all__"
+# class DonationForm(ModelForm):
+#     @staticmethod
+#     def date_validator(value):
+#         today = datetime.datetime.now().date()
+#         if value < today:
+#             raise ValidationError(
+#                 "Nieprawidłowa data, odbiór może nastąpić następnego dnia roboczego"
+#             )
+#
+#     pick_up_date = forms.DateField(validators=[date_validator])
+#
+#     class Meta:
+#         model = Donation
+#         fields = "__all__"
 
 
 class AddUserForm(UserCreationForm):

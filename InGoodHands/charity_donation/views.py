@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic.edit import CreateView, FormView
-from .models import Donation, Institution, User
+from .models import Donation, Institution, User, Category
 from django.urls import reverse_lazy
 from .forms import AddUserForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 
 
 class LandingPageView(View):
@@ -38,25 +37,26 @@ class AddDonationFormConfirmation(View):
         return render(request, 'form-confirmation.html')
 
 
-# class AddDonation(View):
-#     def get(self, request):
-#         form = DonationForm
-#         ctx = {"form": form}
-#         return render(request, "form.html", ctx)
-#
-#     def post(self, request):
-#         form = DonationForm(request.POST)
-#         ctx = {"form": form}
-#         if form.is_valid():
-#             form.save()
-#             return redirect('form_confirmation')
-#         return render(request, "form.html", ctx)
-
 class DonationCreate(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
+    redirect_field_name = '/add_donation/'
+    info_sended = False
     model = Donation
     fields = "__all__"
     success_url = reverse_lazy("/add_donation_confirm/")
     template_name = 'form.html'
+    all_categories = Category.objects.all().all
+    all_institution = Institution.objects.all()
+
+    def form_valid(self, form):
+        self.info_sended = True
+        return super(DonationCreate, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(DonationCreate, self).get_context_data(**kwargs)
+        ctx['all_categories'] = self.all_categories
+        ctx['all_institution'] = self.all_institution
+        return ctx
 
 
 class AddUserView(View):
