@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView, DetailView
 from .models import Donation, Institution, User, Category
 from django.urls import reverse_lazy
 from .forms import AddUserForm, LoginForm
@@ -45,7 +46,7 @@ class DonationCreate(LoginRequiredMixin, CreateView):
     fields = "__all__"
     success_url = reverse_lazy("/add_donation_confirm/")
     template_name = 'form.html'
-    all_categories = Category.objects.all().all
+    all_categories = Category.objects.all()
     all_institution = Institution.objects.all()
 
     def form_valid(self, form):
@@ -112,3 +113,10 @@ class UserDetailsView(LoginRequiredMixin, View):
         print(user_details)
         ctx = {"user_details": user_details}
         return render(request, "user_details.html", ctx)
+
+
+class UserDonationView(LoginRequiredMixin, View):
+    def get(self, request):
+        donation_details = Donation.objects.filter(user=request.user)
+        ctx = {'details': donation_details}
+        return render(request, 'donation_details.html', ctx)

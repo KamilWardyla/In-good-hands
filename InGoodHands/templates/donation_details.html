@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h2>Dane Dotacji</h2>
+    {% if details|length == 0 %}
+        <h2>Brak dotacji</h2>
+    {% else %}
+        {% for donation in details %}
+            <h2>
+                Liczba przekazanych worków {{ donation.quantity }},<br>
+                    Organizacja {{ donation.institution.name }},<br>
+                    Odbiór {{ donation.pick_up_date }} godzina {{ donation.pick_up_time }}
+            </h2>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
